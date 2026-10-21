@@ -1,69 +1,146 @@
-import Image from "next/image";
+import { site } from "@/lib/site";
+
+const chapters = [
+  {
+    index: "01",
+    title: "Found here",
+    text: "This is the public home for Ameer Hosein.",
+  },
+  {
+    index: "02",
+    title: "Shown here",
+    text: "Selected work and writing can be gathered in one place.",
+  },
+  {
+    index: "03",
+    title: "Reached here",
+    text: "A direct way to start a conversation.",
+  },
+] as const;
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="flex min-h-full flex-1 flex-col bg-paper text-ink">
+      <a
+        href="#content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-10 focus:bg-ink focus:px-3 focus:py-2 focus:text-paper"
+      >
+        Skip to content
+      </a>
+      <header className="border-b border-line">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-5">
+          <a href="#top" className="flex items-center gap-3">
+            <span
+              aria-hidden="true"
+              className="grid size-9 place-items-center border border-ink font-display text-sm"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              AH
+            </span>
+            <span className="font-display text-lg tracking-tight">
+              {site.name}
+            </span>
+          </a>
+          <nav aria-label="Primary" className="flex gap-6 text-sm">
+            <a className="hover:text-brick" href="#about">
+              About
+            </a>
+            <a className="hover:text-brick" href="#contact">
+              Contact
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="content" className="flex-1">
+        <section
+          id="top"
+          className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-12 md:items-end md:py-28"
+        >
+          <div className="md:col-span-8">
+            <p className="mb-8 text-xs font-medium uppercase tracking-[0.28em] text-moss">
+              Personal site
+            </p>
+            <h1 className="font-display text-[4.5rem] leading-[0.86] tracking-tight sm:text-8xl md:text-9xl">
+              Ameer
+              <br />
+              Hosein
+            </h1>
+          </div>
+          <p className="max-w-sm text-lg leading-relaxed text-muted md:col-span-4 md:pb-3">
+            A quiet home for introductions, selected work, and a straightforward
+            way to get in touch.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        </section>
+
+        <section aria-label="What this site holds" className="border-y border-line">
+          <ol className="mx-auto grid max-w-6xl md:grid-cols-3">
+            {chapters.map((chapter) => (
+              <li
+                key={chapter.index}
+                className="border-line px-6 py-8 md:border-l md:first:border-l-0"
+              >
+                <p className="font-display text-sm text-brick">{chapter.index}</p>
+                <h2 className="mt-4 font-display text-3xl tracking-tight">
+                  {chapter.title}
+                </h2>
+                <p className="mt-3 max-w-xs leading-relaxed text-muted">
+                  {chapter.text}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section id="about" className="mx-auto grid max-w-6xl gap-8 px-6 py-20 md:grid-cols-12 md:py-28">
+          <h2 className="font-display text-4xl tracking-tight md:col-span-4 md:text-5xl">
+            About
+          </h2>
+          <div className="space-y-5 text-lg leading-relaxed md:col-span-7 md:col-start-6">
+            <p>
+              Ameer Hosein keeps this site as a single, clear address online.
+              It introduces the name and leaves room for work worth sharing.
+            </p>
+            <p className="text-muted">
+              The page stays personal: direct, spare, and easy to return to.
+            </p>
+          </div>
+        </section>
+
+        <section id="contact" className="border-t border-line bg-moss text-paper">
+          <div className="mx-auto grid max-w-6xl gap-8 px-6 py-20 md:grid-cols-12 md:items-end md:py-24">
+            <div className="md:col-span-7">
+              <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#c9d7d1]">
+                Contact
+              </p>
+              <h2 className="mt-4 font-display text-5xl tracking-tight md:text-6xl">
+                Start a conversation.
+              </h2>
+            </div>
+            <div className="md:col-span-5">
+              {site.email ? (
+                <a
+                  className="inline-flex border border-paper px-5 py-3 text-sm hover:bg-paper hover:text-moss"
+                  href={`mailto:${site.email}`}
+                >
+                  {site.email}
+                </a>
+              ) : (
+                <p className="max-w-sm leading-relaxed text-[#d7e3de]">
+                  A public email address has not been added yet. It can be set
+                  in the site details whenever you are ready to share it.
+                </p>
+              )}
+            </div>
+          </div>
+        </section>
       </main>
+
+      <footer className="border-t border-line">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>{site.name}</p>
+          <p>Personal site</p>
+        </div>
+      </footer>
     </div>
   );
 }
