@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { fundamentals, proClass } from "@content/courses";
 import { home } from "@content/home";
+import { instagramPosts } from "@content/instagram";
 import { getProduct } from "@/lib/catalog";
 import { formatMoney } from "@/lib/money";
 import { buttonClass } from "@/components/brand";
@@ -58,9 +59,49 @@ export default function Home() {
                 height={1250}
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="h-full w-full object-cover grayscale motion-safe:transition motion-safe:duration-700 motion-safe:hover:grayscale-0"
+                className="h-full w-full object-cover"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Instagram" className="border-b border-line py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-8 flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-sm font-semibold tracking-widest text-accent uppercase">From the feed</h2>
+              <p className="mt-2 text-3xl font-bold">@ameerhoseintt</p>
+            </div>
+            <a
+              href="https://www.instagram.com/ameerhoseintt/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm font-semibold text-amber-400 hover:text-amber-300"
+            >
+              Instagram
+            </a>
+          </div>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+            {instagramPosts.map((post) => (
+              <a
+                key={post.id}
+                href={post.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={post.alt}
+                className="group relative block overflow-hidden rounded-2xl"
+              >
+                <Image
+                  src={post.image}
+                  alt={post.alt}
+                  width={1200}
+                  height={1500}
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="aspect-[4/5] w-full object-cover motion-safe:transition motion-safe:duration-700 motion-safe:group-hover:scale-105"
+                />
+              </a>
+            ))}
           </div>
         </div>
       </section>

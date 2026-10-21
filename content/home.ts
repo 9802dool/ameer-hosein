@@ -1,7 +1,7 @@
 export const home = {
   hero: {
-    image: "/images/hero.jpg",
-    imageAlt: "Placeholder for a portrait of Ameer Hosein. Replace this file with his photograph.",
+    image: "/images/ig/ig-hero-b.jpg",
+    imageAlt: "Ameer Hosein seated in the studio, in black, from his Instagram.",
     video: "",
     eyebrow: "Trinidad & Tobago",
     heading: "Capturing Life Through",

@@ -1,38 +1,38 @@
 [
   {
     "id": "ig-01",
-    "image": "/images/instagram-01.jpg",
-    "alt": "Instagram placeholder 1. Replace the image and keep this file updated.",
-    "href": "https://instagram.com/ameerhoseintt"
+    "image": "/images/ig/ig-hero-b.jpg",
+    "alt": "Ameer Hosein seated in the studio.",
+    "href": "https://www.instagram.com/ameerhoseintt/p/DemXdxplA3F/"
   },
   {
     "id": "ig-02",
-    "image": "/images/instagram-02.jpg",
-    "alt": "Instagram placeholder 2.",
-    "href": "https://instagram.com/ameerhoseintt"
+    "image": "/images/ig/ig-hero-a.jpg",
+    "alt": "Ameer Hosein walking in the studio.",
+    "href": "https://www.instagram.com/ameerhoseintt/p/DemXdxplA3F/"
   },
   {
     "id": "ig-03",
-    "image": "/images/instagram-03.jpg",
-    "alt": "Instagram placeholder 3.",
-    "href": "https://instagram.com/ameerhoseintt"
+    "image": "/images/ig/ig-class-a.jpg",
+    "alt": "Ameer Hosein presenting a Fundamentals of Photography certificate.",
+    "href": "https://www.instagram.com/ameerhoseintt/p/DeSro3zFHrP/"
   },
   {
     "id": "ig-04",
-    "image": "/images/instagram-04.jpg",
-    "alt": "Instagram placeholder 4.",
-    "href": "https://instagram.com/ameerhoseintt"
+    "image": "/images/ig/ig-miami-a.jpg",
+    "alt": "Ameer Hosein photographing on Ocean Drive in Miami.",
+    "href": "https://www.instagram.com/ameerhoseintt/p/DdukO4AFDbl/"
   },
   {
     "id": "ig-05",
-    "image": "/images/instagram-05.jpg",
-    "alt": "Instagram placeholder 5.",
-    "href": "https://instagram.com/ameerhoseintt"
+    "image": "/images/ig/ig-miami-b.jpg",
+    "alt": "Ameer Hosein on Ocean Drive in Miami.",
+    "href": "https://www.instagram.com/ameerhoseintt/p/DdukO4AFDbl/"
   },
   {
     "id": "ig-06",
-    "image": "/images/instagram-06.jpg",
-    "alt": "Instagram placeholder 6.",
-    "href": "https://instagram.com/ameerhoseintt"
+    "image": "/images/ig/ig-dining.jpg",
+    "alt": "Ameer Hosein at a table by the river.",
+    "href": "https://www.instagram.com/ameerhoseintt/p/DddAVEljK66/"
   }
 ]

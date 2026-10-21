@@ -7,12 +7,12 @@ export const about = {
   ],
   images: [
     {
-      src: "/images/about-teaching.jpg",
-      alt: "Placeholder photograph of Ameer teaching.",
+      src: "/images/ig/ig-class-a.jpg",
+      alt: "Ameer Hosein presenting a Fundamentals of Photography certificate.",
     },
     {
-      src: "/images/about-travel.jpg",
-      alt: "Placeholder travel photograph.",
+      src: "/images/ig/ig-miami-a.jpg",
+      alt: "Ameer Hosein photographing on Ocean Drive in Miami.",
     },
     {
       src: "/images/about-golf.jpg",

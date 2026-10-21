@@ -24,10 +24,10 @@ export const fundamentals = {
   materialsIncluded: true,
   limited: "Limited spaces each cycle",
   nextCycleStarts: "7 November 2026",
-  image: "/images/course-fop.jpg",
-  imageAlt: "Placeholder for a Fundamentals of Photography class photograph.",
-  detailImage: "/images/course-detail.jpg",
-  detailImageAlt: "Placeholder for a student frame, a camera, or a lighting setup.",
+  image: "/images/ig/ig-class-a.jpg",
+  imageAlt: "Ameer Hosein presenting a Fundamentals of Photography certificate.",
+  detailImage: "/images/ig/ig-class-b.jpg",
+  detailImageAlt: "Ameer Hosein with a Fundamentals of Photography graduate.",
   faq: [
     {
       question: "Don't have a camera?",
