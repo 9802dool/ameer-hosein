@@ -65,7 +65,7 @@ function Filter({
   return (
     <button
       aria-pressed={selected}
-      className={`min-h-11 shrink-0 border px-4 text-sm ${selected ? "border-accent bg-accent text-white" : "border-line"}`}
+      className={`min-h-11 shrink-0 border px-4 text-sm ${selected ? "border-accent bg-accent text-black" : "border-line"}`}
       onClick={() => onSelect(id)}
     >
       {children}

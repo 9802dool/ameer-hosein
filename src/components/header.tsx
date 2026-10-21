@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "@content/site";
-import { LogoLockup } from "@/components/brand";
+import { BagIcon } from "@/components/icons";
 import { CartButton } from "@/components/shop/cart";
 
 export function Header() {
@@ -32,24 +32,34 @@ export function Header() {
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-line bg-[var(--header)] backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 md:px-8">
-        <LogoLockup />
-        <nav aria-label="Primary" className="hidden items-center gap-5 text-sm lg:flex">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-[var(--header)] backdrop-blur-md">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+        <Link href="/" className="text-2xl font-extrabold tracking-wider text-ink">
+          AH<span className="text-accent">.</span>
+        </Link>
+        <nav aria-label="Primary" className="hidden items-center space-x-8 text-sm font-medium text-muted md:flex">
           {site.nav.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-accent">
+            <Link key={item.href} href={item.href} className="transition hover:text-amber-400">
               {item.label}
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
           <button className="hidden min-h-11 px-2 text-sm lg:inline-flex" onClick={toggleTheme}>
             <span className="dark:hidden">Dark</span>
             <span className="hidden dark:inline">Light</span>
           </button>
           <CartButton />
+          <Link
+            href="/shop"
+            className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-amber-400 sm:px-5"
+          >
+            <BagIcon />
+            <span className="hidden sm:inline">Shop Merch</span>
+            <span className="sm:hidden">Shop</span>
+          </Link>
           <button
-            className="min-h-11 px-3 text-sm lg:hidden"
+            className="min-h-11 px-2 text-sm md:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setMenuPath(open ? null : pathname)}
@@ -59,7 +69,7 @@ export function Header() {
         </div>
       </div>
       {open ? (
-        <nav id="mobile-menu" aria-label="Mobile" className="border-t border-line bg-paper px-4 py-4 lg:hidden">
+        <nav id="mobile-menu" aria-label="Mobile" className="border-t border-line bg-paper px-6 py-4 md:hidden">
           <ul className="space-y-1">
             {site.nav.map((item) => (
               <li key={item.href}>
@@ -68,6 +78,11 @@ export function Header() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/contact" className="block py-3 text-lg">
+                Contact
+              </Link>
+            </li>
           </ul>
           <button className="mt-2 min-h-11 text-sm" onClick={toggleTheme}>
             <span className="dark:hidden">Switch to dark mode</span>

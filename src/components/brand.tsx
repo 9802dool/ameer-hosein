@@ -27,7 +27,7 @@ export const fieldClass =
   "w-full border border-line bg-paper px-3 py-3 text-base text-ink placeholder:text-muted";
 
 export const buttonClass =
-  "inline-flex min-h-11 items-center justify-center bg-accent px-5 py-3 text-sm font-medium text-white transition hover:bg-[#8d0e18]";
+  "inline-flex min-h-11 items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-black transition hover:bg-amber-400";
 
 export const ghostClass =
-  "inline-flex min-h-11 items-center justify-center border border-ink/30 px-5 py-3 text-sm font-medium text-ink transition hover:border-accent hover:text-accent";
+  "inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 py-3 text-sm font-semibold text-ink transition hover:border-neutral-500";

@@ -1,28 +1,28 @@
 export const home = {
   hero: {
     image: "/images/hero.jpg",
-    imageAlt: "Placeholder for a full-bleed portrait or film still of Ameer Hosein.",
+    imageAlt: "Placeholder for a portrait of Ameer Hosein. Replace this file with his photograph.",
     video: "",
-    tagline: "Photographer | Content Creator | Leader",
-    primaryCta: { label: "Join the Next Class", href: "/courses/fundamentals#enrol" },
-    secondaryCta: { label: "Book a Shoot", href: "/contact?subject=Photoshoot" },
+    eyebrow: "Trinidad & Tobago",
+    heading: "Capturing Life Through",
+    headingAccent: "The Lens",
+    text: "Welcome to the official digital hub of Ameer Hosein. Explore professional photography, masterclasses, and the AH collection.",
+    primaryCta: { label: "Explore Collection", href: "/shop" },
+    secondaryCta: { label: "Instagram", href: "https://www.instagram.com/ameerhoseintt/" },
   },
-  intro: {
-    image: "/images/intro.jpg",
-    imageAlt: "Placeholder portrait of Ameer Hosein.",
-    heading: "Pictures with a point of view.",
-    paragraphs: [
-      "I make photographs, I teach them, and I put the work where people can actually see it. Based in Trinidad and Tobago, I shoot, lecture, and build The Fundamentals of Photography for anyone ready to take the craft seriously.",
-      "The red suit is the mark. The pictures are the point. If you want a class, a sitting, or a collaboration, you are in the right place.",
+  store: {
+    eyebrow: "The AH Collection",
+    heading: "Official Merchandise",
+    text: "Streetwear from the AH mark. Prices are in Trinidad and Tobago dollars, and you can edit every piece in the product file.",
+    pieces: [
+      { slug: "ah-hoodie", badge: "Best Seller" },
+      { slug: "ah-signature-tee" },
+      { slug: "ah-cap", badge: "New Drop" },
     ],
   },
-  stats: [
-    { value: "16K+", label: "Instagram followers" },
-    { value: "628+", label: "posts" },
-    { value: "FOP", label: "graduates" },
-  ],
-  closing: {
-    heading: "Tell me what you want to make.",
-    text: "A class seat, a portrait, a wedding, or a brand story. Send a note, or message me on WhatsApp and start with the pictures.",
+  courses: {
+    eyebrow: "Learn & Grow",
+    heading: "Photography Masterclasses",
+    text: "Learn the camera, the light, the edit, and how the work becomes a career. Classes meet in Chaguanas.",
   },
 } as const;

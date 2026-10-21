@@ -56,7 +56,7 @@ export default function FundamentalsPage() {
             </ul>
           </div>
           <div className="bg-panel p-6">
-            <p className="inline-block bg-accent px-3 py-1 text-xs uppercase tracking-[0.18em] text-white">
+            <p className="inline-block bg-accent px-3 py-1 text-xs uppercase tracking-[0.18em] text-black">
               {fundamentals.limited}
             </p>
             <dl className="mt-6 space-y-4 text-sm">

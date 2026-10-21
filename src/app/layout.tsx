@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { site, siteUrl } from "@content/site";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
@@ -8,13 +8,9 @@ import { CartProvider } from "@/components/shop/cart";
 import { JsonLd } from "@/lib/seo";
 import "./globals.css";
 
-const display = Playfair_Display({
+const sans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-display",
-});
-
-const sans = Inter({
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-sans",
 });
 
@@ -81,12 +77,12 @@ const structuredData = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} dark h-full antialiased`}>
+    <html lang="en" className={`${sans.variable} dark h-full scroll-smooth antialiased`}>
       <body className="flex min-h-full flex-col bg-paper font-sans text-ink">
         <JsonLd data={structuredData} />
         <a
           href="#content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-accent focus:px-3 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-accent focus:px-3 focus:py-2 focus:text-black"
         >
           Skip to content
         </a>

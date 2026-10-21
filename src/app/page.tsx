@@ -1,187 +1,159 @@
 import Image from "next/image";
 import Link from "next/link";
-import { fundamentals } from "@content/courses";
+import { fundamentals, proClass } from "@content/courses";
 import { home } from "@content/home";
-import { instagramPosts } from "@content/instagram";
-import { site } from "@content/site";
-import { FadeIn } from "@/components/fade-in";
-import { buttonClass } from "@/components/brand";
-import { TestimonialSlider } from "@/components/testimonials";
-import { featuredProducts } from "@/lib/catalog";
+import { getProduct } from "@/lib/catalog";
 import { formatMoney } from "@/lib/money";
+import { buttonClass } from "@/components/brand";
+import { ArrowIcon, InstagramIcon } from "@/components/icons";
+import { AddToCartButton } from "@/components/shop/add-to-cart";
 
 export default function Home() {
-  const merch = featuredProducts();
+  const pieces = home.store.pieces.flatMap((piece) => {
+    const product = getProduct(piece.slug);
+    if (!product) return [];
+    const variant = product.variants.find((item) => item.stock > 0);
+    const colours = [...new Set(product.variants.map((item) => item.colour).filter(Boolean))].join(" / ");
+    return [{ ...piece, product, variant, colours }];
+  });
 
   return (
     <>
-      <section className="relative min-h-svh bg-black text-white">
-        {home.hero.video ? (
-          <video
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={home.hero.image}
-          >
-            <source src={home.hero.video} />
-          </video>
-        ) : (
-          <Image
-            src={home.hero.image}
-            alt={home.hero.imageAlt}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/25" />
-        <div className="relative mx-auto flex min-h-svh max-w-6xl flex-col justify-end px-5 pb-16 pt-28 md:px-8">
-          <p className="text-xs uppercase tracking-[0.32em] text-white/80">{site.mark}</p>
-          <h1 className="mt-5 max-w-4xl font-display text-5xl leading-[0.95] md:text-7xl">{home.hero.tagline}</h1>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href={home.hero.primaryCta.href} className={buttonClass}>
-              {home.hero.primaryCta.label}
-            </Link>
-            <Link
-              href={home.hero.secondaryCta.href}
-              className="inline-flex min-h-11 items-center justify-center border border-white px-5 py-3 text-sm"
-            >
-              {home.hero.secondaryCta.label}
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <FadeIn className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 md:grid-cols-2 md:px-8 md:py-28">
-        <Image
-          src={home.intro.image}
-          alt={home.intro.imageAlt}
-          width={1200}
-          height={1500}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="h-auto w-full object-cover"
-        />
-        <div>
-          <h2 className="font-display text-4xl leading-tight md:text-6xl">{home.intro.heading}</h2>
-          {home.intro.paragraphs.map((paragraph) => (
-            <p key={paragraph} className="mt-5 text-lg leading-relaxed text-muted">
-              {paragraph}
-            </p>
-          ))}
-        </div>
-      </FadeIn>
-
-      <section className="border-y border-line" aria-label="At a glance">
-        <dl className="mx-auto grid max-w-6xl sm:grid-cols-3">
-          {home.stats.map((stat) => (
-            <div key={stat.label} className="border-line px-5 py-8 md:px-8 sm:border-l sm:first:border-l-0">
-              <dt className="text-sm text-muted">{stat.label}</dt>
-              <dd className="mt-2 font-display text-5xl">{stat.value}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
-      <FadeIn className="mx-auto grid max-w-6xl gap-8 px-5 py-20 md:grid-cols-[1.1fr_0.9fr] md:px-8">
-        <div className="relative min-h-80">
-          <Image
-            src={fundamentals.image}
-            alt={fundamentals.imageAlt}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover"
-          />
-        </div>
-        <div className="flex flex-col justify-center">
-          <p className="text-xs uppercase tracking-[0.28em] text-accent">{fundamentals.shortName}</p>
-          <h2 className="mt-3 font-display text-4xl md:text-5xl">{fundamentals.name}</h2>
-          <p className="mt-4 text-lg text-muted">{fundamentals.summary}</p>
-          <p className="mt-4 text-sm">
-            {formatMoney(fundamentals.price)} · {fundamentals.schedule}
-          </p>
-          <Link href="/courses/fundamentals" className={`${buttonClass} mt-6 self-start`}>
-            See the class
-          </Link>
-        </div>
-      </FadeIn>
-
-      <section className="mx-auto max-w-6xl px-5 py-8 md:px-8">
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <h2 className="font-display text-4xl">In their words</h2>
-          <Link href="/testimonials" className="text-sm underline">
-            All testimonials
-          </Link>
-        </div>
-        <TestimonialSlider />
-      </section>
-
-      <section className="mx-auto max-w-6xl px-5 py-16 md:px-8" aria-label="Instagram">
-        <div className="mb-6 flex items-end justify-between">
-          <h2 className="font-display text-4xl">On the feed</h2>
-          <a className="text-sm underline" href="https://instagram.com/ameerhoseintt">
-            @ameerhoseintt
-          </a>
-        </div>
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-          {instagramPosts.map((post) => (
-            <a key={post.id} href={post.href} className="group relative block overflow-hidden" target="_blank" rel="noreferrer">
-              <Image
-                src={post.image}
-                alt={post.alt}
-                width={1080}
-                height={1080}
-                sizes="(max-width: 768px) 50vw, 33vw"
-                className="aspect-square w-full object-cover motion-safe:transition motion-safe:duration-700 motion-safe:group-hover:scale-105"
-              />
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-t border-line">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:px-8">
-          <div className="mb-8 flex items-end justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-accent">AH Store</p>
-              <h2 className="mt-2 font-display text-4xl">Shop AH</h2>
-            </div>
-            <Link href="/shop" className="text-sm underline">
-              All pieces
-            </Link>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-3">
-            {merch.map((product) => (
-              <Link key={product.id} href={`/shop/${product.slug}`} className="group">
-                <div className="overflow-hidden">
-                  <Image
-                    src={product.images[0].src}
-                    alt={product.images[0].alt}
-                    width={1200}
-                    height={1500}
-                    sizes="(max-width: 640px) 100vw, 33vw"
-                    className="aspect-[4/5] w-full object-cover motion-safe:transition motion-safe:duration-700 motion-safe:group-hover:scale-105"
-                  />
-                </div>
-                <p className="mt-3 font-display text-2xl">{product.name}</p>
-                <p className="text-sm text-muted">{formatMoney(product.price)}</p>
+      <section className="relative overflow-hidden border-b border-line pt-32 pb-20 md:pt-44 md:pb-32">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.1),transparent_50%)]" />
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-6 md:grid-cols-2">
+          <div>
+            <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-400">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />
+              {home.hero.eyebrow}
+            </span>
+            <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
+              {home.hero.heading}{" "}
+              <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
+                {home.hero.headingAccent}.
+              </span>
+            </h1>
+            <p className="mb-8 text-lg leading-relaxed text-muted">{home.hero.text}</p>
+            <div className="flex flex-wrap gap-4">
+              <Link href={home.hero.primaryCta.href} className={`${buttonClass} px-8 py-4 shadow-lg shadow-amber-500/20`}>
+                {home.hero.primaryCta.label}
               </Link>
+              <a
+                href={home.hero.secondaryCta.href}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-neutral-700 px-8 py-4 font-semibold transition hover:border-neutral-500"
+              >
+                <InstagramIcon />
+                {home.hero.secondaryCta.label}
+              </a>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="aspect-[4/5] overflow-hidden rounded-3xl border border-line bg-panel shadow-2xl">
+              <Image
+                src={home.hero.image}
+                alt={home.hero.imageAlt}
+                width={1000}
+                height={1250}
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="h-full w-full object-cover grayscale motion-safe:transition motion-safe:duration-700 motion-safe:hover:grayscale-0"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="store" className="bg-[#0c0c0e] py-24 text-neutral-100">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-16 flex flex-col justify-between md:flex-row md:items-end">
+            <div>
+              <h2 className="mb-3 text-sm font-semibold tracking-widest text-accent uppercase">{home.store.eyebrow}</h2>
+              <p className="text-3xl font-bold tracking-tight md:text-4xl">{home.store.heading}</p>
+            </div>
+            <p className="mt-4 max-w-md text-neutral-400 md:mt-0">{home.store.text}</p>
+          </div>
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {pieces.map((piece) => (
+              <article
+                key={piece.product.id}
+                className="group overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/60 transition hover:border-amber-500/50"
+              >
+                <Link
+                  href={`/shop/${piece.product.slug}`}
+                  aria-label={piece.product.name}
+                  className="relative block aspect-square overflow-hidden bg-neutral-800"
+                >
+                  <Image
+                    src={piece.product.images[0].src}
+                    alt={piece.product.images[0].alt}
+                    width={800}
+                    height={800}
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="h-full w-full object-cover motion-safe:transition motion-safe:duration-500 motion-safe:group-hover:scale-105"
+                  />
+                  {"badge" in piece && piece.badge ? (
+                    <span
+                      className={`absolute top-4 left-4 rounded-full px-3 py-1 text-xs font-semibold ${
+                        piece.badge === "New Drop" ? "bg-accent text-black" : "bg-black/70 text-amber-400 backdrop-blur-md"
+                      }`}
+                    >
+                      {piece.badge}
+                    </span>
+                  ) : null}
+                </Link>
+                <div className="p-6">
+                  <h3 className="mb-1 text-lg font-bold">
+                    <Link href={`/shop/${piece.product.slug}`}>{piece.product.name}</Link>
+                  </h3>
+                  <p className="mb-4 text-sm text-neutral-400">{piece.colours || piece.product.description}</p>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-xl font-extrabold">{formatMoney(piece.product.price)}</span>
+                    {piece.variant ? (
+                      <AddToCartButton productId={piece.product.id} variantId={piece.variant.id} />
+                    ) : (
+                      <Link href={`/shop/${piece.product.slug}`} className="text-sm font-semibold text-accent">
+                        View
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-accent text-white">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-20 md:flex-row md:items-end md:justify-between md:px-8">
-          <div>
-            <h2 className="max-w-xl font-display text-5xl leading-none">{home.closing.heading}</h2>
-            <p className="mt-4 max-w-md text-white/85">{home.closing.text}</p>
+      <section id="courses" className="border-t border-line py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-16 max-w-2xl">
+            <h2 className="mb-3 text-sm font-semibold tracking-widest text-accent uppercase">{home.courses.eyebrow}</h2>
+            <p className="mb-4 text-3xl font-bold tracking-tight md:text-4xl">{home.courses.heading}</p>
+            <p className="text-muted">{home.courses.text}</p>
           </div>
-          <Link href="/contact" className="inline-flex min-h-11 items-center justify-center bg-white px-5 py-3 text-sm font-medium text-black">
-            Contact AH
-          </Link>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            <article className="rounded-3xl border border-neutral-800 bg-gradient-to-br from-neutral-900 to-neutral-950 p-8 text-neutral-100">
+              <span className="text-sm font-bold tracking-wider text-accent uppercase">In-person course</span>
+              <h3 className="mt-2 mb-4 text-2xl font-bold">{fundamentals.name}</h3>
+              <p className="mb-6 leading-relaxed text-neutral-400">
+                {fundamentals.summary} {fundamentals.schedule} at {fundamentals.venue}. {formatMoney(fundamentals.price)}, with payment plans.
+              </p>
+              <Link href="/courses/fundamentals#enrol" className="inline-flex items-center gap-2 font-semibold text-amber-400 hover:text-amber-300">
+                Check enrollment details <ArrowIcon />
+              </Link>
+            </article>
+            <article className="rounded-3xl border border-neutral-800 bg-gradient-to-br from-neutral-900 to-neutral-950 p-8 text-neutral-100">
+              <span className="text-sm font-bold tracking-wider text-accent uppercase">{proClass.eyebrow}</span>
+              <h3 className="mt-2 mb-4 text-2xl font-bold">
+                {proClass.name} {proClass.edition}
+              </h3>
+              <p className="mb-6 leading-relaxed text-neutral-400">{proClass.summary} The centrepiece is the 10-minute pro challenge.</p>
+              <Link href="/courses/pro" className="inline-flex items-center gap-2 font-semibold text-amber-400 hover:text-amber-300">
+                See the class <ArrowIcon />
+              </Link>
+            </article>
+          </div>
         </div>
       </section>
     </>

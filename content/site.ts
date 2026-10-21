@@ -1,9 +1,9 @@
 export const site = {
   mark: "AH",
   name: "Ameer Hosein",
-  title: "AH | Ameer Hosein",
+  title: "AH | Ameer Hosein — Creator, Photographer & Merch",
   description:
-    "Ameer Hosein is a photographer, photography lecturer, and content creator in Trinidad and Tobago. Study The Fundamentals of Photography in Chaguanas, book a shoot, or shop AH.",
+    "The official hub of Ameer Hosein. Professional photography, masterclasses in Chaguanas, and the AH merch collection.",
   tagline: "Photographer | Content Creator | Leader",
   signOff: "Love & Light, AH",
   phoneDisplay: "+1 (868) 345-5632",
@@ -38,18 +38,16 @@ export const site = {
     },
   ],
   nav: [
-    { href: "/portfolio", label: "Portfolio" },
-    { href: "/courses/fundamentals", label: "FOP" },
-    { href: "/courses/pro", label: "Pro Class" },
     { href: "/about", label: "About" },
-    { href: "/shop", label: "Shop" },
-    { href: "/contact", label: "Contact" },
+    { href: "/shop", label: "Merch Store" },
+    { href: "/courses/fundamentals", label: "Workshops" },
+    { href: "/portfolio", label: "Portfolio" },
   ],
   footer: [
-    { href: "/testimonials", label: "Testimonials" },
-    { href: "/collaborations", label: "Collaborations" },
-    { href: "/courses/fundamentals", label: "Photography classes" },
-    { href: "/shop", label: "AH Store" },
+    { href: "/about", label: "About Ameer" },
+    { href: "/shop", label: "Merch Store" },
+    { href: "/courses/fundamentals", label: "Workshops" },
+    { href: "/contact", label: "Contact" },
   ],
 } as const;
 
