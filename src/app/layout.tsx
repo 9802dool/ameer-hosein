@@ -1,30 +1,104 @@
 import type { Metadata } from "next";
-import { Fraunces, Outfit } from "next/font/google";
-import { site } from "@/lib/site";
+import { Inter, Playfair_Display } from "next/font/google";
+import { site, siteUrl } from "@content/site";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+import { WhatsAppButton } from "@/components/whatsapp-button";
+import { CartProvider } from "@/components/shop/cart";
+import { JsonLd } from "@/lib/seo";
 import "./globals.css";
 
-const display = Fraunces({
+const display = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-display",
 });
 
-const sans = Outfit({
+const sans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
+const url = siteUrl();
+
 export const metadata: Metadata = {
-  title: site.title,
+  metadataBase: new URL(url),
+  title: {
+    default: site.title,
+    template: `%s · ${site.title}`,
+  },
   description: site.description,
+  keywords: [
+    "photography course Trinidad",
+    "photography classes Chaguanas",
+    "Ameer Hosein",
+    "Fundamentals of Photography",
+    "photographer Trinidad",
+  ],
+  openGraph: {
+    title: site.title,
+    description: site.description,
+    locale: "en_TT",
+    type: "website",
+    url,
+  },
+  icons: { icon: "/logo-ah.svg" },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      name: site.name,
+      jobTitle: "Photographer, photography lecturer and content creator",
+      url,
+      telephone: site.phoneTel,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: site.location.name,
+        addressLocality: site.location.area,
+        addressCountry: "TT",
+      },
+      sameAs: site.socials.map((item) => item.href),
+    },
+    {
+      "@type": "LocalBusiness",
+      name: site.title,
+      url,
+      telephone: site.phoneTel,
+      image: `${url}/logo-ah.svg`,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: site.location.name,
+        addressLocality: site.location.area,
+        addressRegion: "Trinidad",
+        addressCountry: "TT",
+      },
+      areaServed: "Trinidad and Tobago",
+    },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${display.variable} ${sans.variable} h-full antialiased`}
-    >
-      <body className="flex min-h-full flex-col font-sans">{children}</body>
+    <html lang="en" className={`${display.variable} ${sans.variable} dark h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-paper font-sans text-ink">
+        <JsonLd data={structuredData} />
+        <a
+          href="#content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-accent focus:px-3 focus:py-2 focus:text-white"
+        >
+          Skip to content
+        </a>
+        <CartProvider>
+          <Header />
+          <main id="content" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+          <WhatsAppButton />
+        </CartProvider>
+      </body>
     </html>
   );
 }
