@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import type { Product } from "@content/products";
-import { buttonClass } from "@/components/brand";
+import { buttonClass, chipClass } from "@/components/brand";
 import { useCart } from "@/components/shop/cart";
 import { formatMoney, variantLabel } from "@/lib/money";
 
@@ -26,7 +26,7 @@ export function ProductPurchase({ product }: { product: Product }) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
       <div>
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden rounded-[1.75rem] bg-panel shadow-[var(--shadow)]">
           <Image
             src={current.src}
             alt={current.alt}
@@ -34,7 +34,7 @@ export function ProductPurchase({ product }: { product: Product }) {
             height={1500}
             priority
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="h-auto w-full object-cover"
+            className="aspect-[4/5] h-auto w-full object-cover"
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-ah.svg" alt="" className="pointer-events-none absolute bottom-4 right-4 h-10 w-10" />
@@ -42,15 +42,21 @@ export function ProductPurchase({ product }: { product: Product }) {
         {product.images.length > 1 ? (
           <div className="mt-3 flex gap-2">
             {product.images.map((item, index) => (
-              <button key={item.src} aria-label={`Show image ${index + 1}`} onClick={() => setImage(index)}>
-                <Image src={item.src} alt="" width={96} height={120} className="h-20 w-16 object-cover" />
+              <button
+                key={item.src}
+                aria-label={`Show image ${index + 1}`}
+                aria-pressed={index === image}
+                className={`overflow-hidden rounded-xl ${index === image ? "ring-2 ring-accent" : "ring-1 ring-line"}`}
+                onClick={() => setImage(index)}
+              >
+                <Image src={item.src} alt="" width={96} height={120} sizes="64px" className="h-20 w-16 object-cover" />
               </button>
             ))}
           </div>
         ) : null}
       </div>
       <div>
-        <p className="text-xs uppercase tracking-[0.22em] text-accent">AH Store</p>
+        <p className="eyebrow">AH Store</p>
         <h1 className="mt-3 font-display text-5xl leading-none">{product.name}</h1>
         <p className="mt-4 text-lg">{formatMoney(product.price)}</p>
         <p className="mt-4 max-w-md leading-relaxed text-muted">{product.description}</p>
@@ -62,7 +68,7 @@ export function ProductPurchase({ product }: { product: Product }) {
                 <button
                   key={item}
                   aria-pressed={item === colour}
-                  className={`min-h-11 border px-4 text-sm ${item === colour ? "border-accent text-accent" : "border-line"}`}
+                  className={chipClass(item === colour)}
                   onClick={() => setColour(item)}
                 >
                   {item}
@@ -79,7 +85,7 @@ export function ProductPurchase({ product }: { product: Product }) {
                 <button
                   key={item}
                   aria-pressed={item === size}
-                  className={`min-h-11 border px-4 text-sm ${item === size ? "border-accent text-accent" : "border-line"}`}
+                  className={chipClass(item === size)}
                   onClick={() => setSize(item)}
                 >
                   {item}

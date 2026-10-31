@@ -14,7 +14,7 @@ export default function AboutPage() {
   return (
     <>
       <PageIntro eyebrow="About" title="Ameer Hosein" lede={about.lede} />
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 pb-16 md:grid-cols-[0.8fr_1.2fr] md:px-8">
+      <div className="shell grid gap-10 pb-20 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
         <div className="space-y-4 text-lg leading-relaxed text-muted">
           {about.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
@@ -28,7 +28,7 @@ export default function AboutPage() {
               alt={image.alt}
               width={1600}
               height={1100}
-              className="h-auto w-full object-cover"
+              className="h-auto w-full rounded-[1.75rem] object-cover shadow-[var(--shadow)]"
               sizes="(max-width: 768px) 100vw, 60vw"
             />
           ))}

@@ -22,7 +22,7 @@ export default function ConfirmationPage({
   searchParams: Promise<{ token?: string; error?: string }>;
 }) {
   return (
-    <Suspense fallback={<p className="px-5 pt-32">Opening your order…</p>}>
+    <Suspense fallback={<p className="shell pt-16">Opening your order…</p>}>
       <Confirmation searchParams={searchParams} />
     </Suspense>
   );
@@ -38,7 +38,7 @@ async function Confirmation({
 
   if (!order) {
     return (
-      <div className="mx-auto max-w-3xl px-5 py-36">
+      <div className="shell max-w-3xl py-24">
         <h1 className="font-display text-5xl">We could not open that order.</h1>
         <p className="mt-4 text-muted">If you just paid, check your email. The receipt is sent there as well.</p>
         <Link href="/shop" className={`${buttonClass} mt-8`}>
@@ -65,7 +65,7 @@ async function Confirmation({
               : "Keep this reference. Ameer has the order, and the receipt email follows once mail is configured."
         }
       />
-      <div className="mx-auto max-w-3xl px-5 pb-20 md:px-8">
+      <div className="shell max-w-3xl pb-20">
         <ul className="space-y-3 border-y border-line py-6 text-sm">
           {order.items.map((item) => (
             <li key={item.variantId} className="flex justify-between gap-4">
@@ -82,7 +82,7 @@ async function Confirmation({
           <span>{formatMoney(order.total)}</span>
         </p>
         {order.paymentMethod === "transfer" && !paid ? (
-          <div className="mt-8 border border-line p-5 text-sm">
+          <div className="card mt-8 p-6 text-sm">
             <p className="font-medium">Bank transfer</p>
             <p className="mt-2">{bankTransfer.bankName}</p>
             <p>{bankTransfer.accountName}</p>

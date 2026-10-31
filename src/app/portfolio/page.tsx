@@ -17,7 +17,7 @@ export default function PortfolioPage() {
         title="Portfolio"
         lede="Portraits and models, fashion, weddings, Fujifilm, travel, and work that has already been published. Swap the placeholders for the real frames."
       />
-      <div className="mx-auto max-w-6xl px-5 pb-20 md:px-8">
+      <div className="shell pb-20">
         <PortfolioGallery />
       </div>
     </>

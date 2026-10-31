@@ -13,7 +13,7 @@ export default function ShopPage() {
   return (
     <>
       <PageIntro eyebrow={shopCopy.name} title={shopCopy.heading} lede={shopCopy.lede} />
-      <div className="mx-auto max-w-6xl px-5 pb-20 md:px-8">
+      <div className="shell pb-20">
         <ProductBrowser />
       </div>
     </>

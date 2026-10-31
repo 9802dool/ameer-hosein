@@ -26,7 +26,7 @@ async function submit(url: string, body: unknown) {
 function Errors({ errors, name }: { errors: FieldErrors; name: string }) {
   const message = errors[name]?.[0];
   if (!message) return null;
-  return <span className="mt-1 block text-sm text-accent">{message}</span>;
+  return <span className="mt-1 block text-sm text-danger">{message}</span>;
 }
 
 export function EnrolForm() {
@@ -98,7 +98,7 @@ export function EnrolForm() {
           Enrol on WhatsApp
         </a>
       </div>
-      {status ? <p className={status.tone === "ok" ? "text-sm" : "text-sm text-accent"}>{status.text}</p> : null}
+      {status ? <p className={status.tone === "ok" ? "text-sm" : "text-sm text-danger"}>{status.text}</p> : null}
     </form>
   );
 }
@@ -172,7 +172,7 @@ export function ContactForm({ initialSubject }: { initialSubject?: string }) {
       <button className={buttonClass} disabled={pending}>
         {pending ? "Sending…" : "Send"}
       </button>
-      {status ? <p className={status.tone === "ok" ? "text-sm" : "text-sm text-accent"}>{status.text}</p> : null}
+      {status ? <p className={status.tone === "ok" ? "text-sm" : "text-sm text-danger"}>{status.text}</p> : null}
     </form>
   );
 }
@@ -237,7 +237,7 @@ export function EnquiryForm() {
       <button className={buttonClass} disabled={pending}>
         {pending ? "Sending…" : "Work with me"}
       </button>
-      {status ? <p className={status.tone === "ok" ? "text-sm" : "text-sm text-accent"}>{status.text}</p> : null}
+      {status ? <p className={status.tone === "ok" ? "text-sm" : "text-sm text-danger"}>{status.text}</p> : null}
     </form>
   );
 }

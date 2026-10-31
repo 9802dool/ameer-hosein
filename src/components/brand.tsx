@@ -9,25 +9,29 @@ export function Mark({ className = "h-10 w-10" }: { className?: string }) {
   );
 }
 
-export function LogoLockup({ compact = false }: { compact?: boolean }) {
+export function LogoLockup() {
   return (
-    <Link href="/" className="flex items-center gap-3">
-      <Mark />
-      {compact ? null : (
-        <span className="leading-tight">
-          <span className="block font-display text-sm tracking-[0.22em]">{site.mark}</span>
-          <span className="block text-xs text-muted">{site.name}</span>
-        </span>
-      )}
+    <Link href="/" aria-label={site.name} className="flex min-w-0 items-center gap-2.5">
+      <Mark className="h-9 w-9 shrink-0 overflow-hidden rounded-md" />
+      <span className="hidden truncate text-sm font-medium sm:block">{site.name}</span>
     </Link>
   );
 }
 
 export const fieldClass =
-  "w-full border border-line bg-paper px-3 py-3 text-base text-ink placeholder:text-muted";
+  "mt-2 w-full rounded-2xl border border-line bg-paper px-4 py-3 text-base text-ink shadow-sm outline-none transition placeholder:text-muted focus:border-accent";
 
 export const buttonClass =
-  "inline-flex min-h-11 items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-black transition hover:bg-amber-400";
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_-16px_var(--accent)] transition hover:brightness-110 active:brightness-95 disabled:cursor-not-allowed disabled:opacity-50";
 
 export const ghostClass =
-  "inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 py-3 text-sm font-semibold text-ink transition hover:border-neutral-500";
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-line bg-panel px-5 py-3 text-sm font-semibold text-ink shadow-sm transition hover:border-accent hover:text-accent-text";
+
+export const textLinkClass =
+  "inline-flex items-center gap-2 font-semibold text-accent-text motion-safe:transition-[gap] motion-safe:hover:gap-3";
+
+export function chipClass(selected: boolean) {
+  return `min-h-11 shrink-0 rounded-full border px-4 text-sm font-medium transition ${
+    selected ? "border-accent bg-accent text-white" : "border-line bg-panel text-ink hover:border-accent-text"
+  }`;
+}

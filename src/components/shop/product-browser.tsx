@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { productCategories, products, type ProductCategory } from "@content/products";
+import { chipClass } from "@/components/brand";
 import { formatMoney, stockCount } from "@/lib/money";
 
 export function ProductBrowser() {
@@ -12,7 +13,7 @@ export function ProductBrowser() {
 
   return (
     <div>
-      <div className="flex gap-2 overflow-auto pb-8" role="toolbar" aria-label="Filter products">
+      <div className="flex flex-wrap gap-2 pb-8" role="toolbar" aria-label="Filter products">
         <Filter current={filter} id="all" onSelect={setFilter}>
           All
         </Filter>
@@ -26,22 +27,24 @@ export function ProductBrowser() {
         {visible.map((product) => {
           const stock = stockCount(product.variants);
           return (
-            <Link key={product.id} href={`/shop/${product.slug}`} className="group block">
-              <div className="relative overflow-hidden bg-panel">
+            <Link key={product.id} href={`/shop/${product.slug}`} className="card card-hover group block overflow-hidden">
+              <div className="relative overflow-hidden">
                 <Image
                   src={product.images[0].src}
                   alt={product.images[0].alt}
                   width={1200}
                   height={1500}
-                  sizes="(max-width: 640px) 100vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="aspect-[4/5] w-full object-cover motion-safe:transition motion-safe:duration-700 motion-safe:group-hover:scale-105"
                 />
               </div>
-              <div className="mt-4 flex items-baseline justify-between gap-3">
-                <h2 className="font-display text-2xl">{product.name}</h2>
-                <p className="text-sm">{formatMoney(product.price)}</p>
+              <div className="p-5">
+                <div className="flex items-baseline justify-between gap-3">
+                  <h2 className="text-2xl">{product.name}</h2>
+                  <p className="text-sm font-semibold">{formatMoney(product.price)}</p>
+                </div>
+                <p className="mt-1 text-sm text-muted">{stock > 0 ? "In stock" : "Sold out"}</p>
               </div>
-              <p className="mt-1 text-sm text-muted">{stock > 0 ? "In stock" : "Sold out"}</p>
             </Link>
           );
         })}
@@ -65,7 +68,7 @@ function Filter({
   return (
     <button
       aria-pressed={selected}
-      className={`min-h-11 shrink-0 border px-4 text-sm ${selected ? "border-accent bg-accent text-black" : "border-line"}`}
+      className={chipClass(selected)}
       onClick={() => onSelect(id)}
     >
       {children}

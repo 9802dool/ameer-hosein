@@ -4,7 +4,7 @@ export function WhatsAppButton() {
   return (
     <a
       href={whatsappLink("Hi Ameer, I found you through your site.")}
-      className="fixed bottom-4 right-4 z-40 inline-flex min-h-12 items-center gap-2 bg-[#128C7E] px-4 py-3 text-sm font-medium text-white shadow-lg"
+      className="fixed right-4 bottom-4 z-30 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#075E54] px-4 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_-12px_rgba(0,0,0,0.65)] transition hover:brightness-110"
       target="_blank"
       rel="noreferrer"
     >

@@ -14,15 +14,15 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#090909",
-          color: "#f5f5f4",
+          background: "#100e0c",
+          color: "#f6f1ea",
           padding: 72,
         }}
       >
         <div style={{ display: "flex", fontSize: 42, letterSpacing: 8 }}>AH</div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 76, lineHeight: 1 }}>Ameer Hosein</div>
-          <div style={{ marginTop: 18, fontSize: 28, color: "#f59e0b" }}>
+          <div style={{ marginTop: 18, fontSize: 28, color: "#ff4d5a" }}>
             Photographer | Content Creator | Leader
           </div>
         </div>

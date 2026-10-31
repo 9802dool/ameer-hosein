@@ -16,7 +16,7 @@ export default function TestimonialsPage() {
         title="Testimonials"
         lede="Quote cards and student films. Add Reel links or MP4s in content/testimonials.ts."
       />
-      <div className="mx-auto max-w-6xl px-5 pb-20 md:px-8">
+      <div className="shell pb-20">
         <TestimonialSlider />
       </div>
     </>

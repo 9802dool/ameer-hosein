@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { portfolioCategories, portfolioImages, type PortfolioCategory } from "@content/portfolio";
+import { chipClass } from "@/components/brand";
 
 export function PortfolioGallery() {
   const [filter, setFilter] = useState<PortfolioCategory | "all">("all");
@@ -29,7 +30,7 @@ export function PortfolioGallery() {
 
   return (
     <div>
-      <div className="flex gap-2 overflow-auto pb-4" role="toolbar" aria-label="Filter portfolio">
+      <div className="flex flex-wrap gap-2 pb-4" role="toolbar" aria-label="Filter portfolio">
         <FilterButton current={filter} id="all" onSelect={chooseFilter}>
           All
         </FilterButton>
@@ -52,7 +53,7 @@ export function PortfolioGallery() {
         {images.map((image, index) => (
           <button
             key={image.src}
-            className="group relative mb-4 block w-full break-inside-avoid overflow-hidden"
+            className="group relative mb-4 block w-full break-inside-avoid overflow-hidden rounded-2xl shadow-[var(--shadow)]"
             onClick={() => setActive(index)}
           >
             <Image
@@ -69,10 +70,10 @@ export function PortfolioGallery() {
       </div>
       <dialog ref={dialog} aria-label="Photograph" onClose={() => setActive(null)}>
         {current ? (
-          <div className="bg-paper p-3 text-ink">
+          <div className="rounded-[1.5rem] bg-paper p-4 text-ink shadow-[var(--shadow)]">
             <div className="mb-3 flex justify-between gap-3">
               <p className="text-sm text-muted">{current.alt}</p>
-              <button className="min-h-11 px-3 text-sm" onClick={() => dialog.current?.close()}>
+              <button className="min-h-11 rounded-full border border-line px-4 text-sm" onClick={() => dialog.current?.close()}>
                 Close
               </button>
             </div>
@@ -89,13 +90,13 @@ export function PortfolioGallery() {
             </div>
             <div className="mt-3 flex justify-between">
               <button
-                className="min-h-11 px-3 text-sm"
+                className="min-h-11 rounded-full border border-line px-4 text-sm"
                 onClick={() => setActive((index) => (index === null ? 0 : (index + images.length - 1) % images.length))}
               >
                 Previous
               </button>
               <button
-                className="min-h-11 px-3 text-sm"
+                className="min-h-11 rounded-full border border-line px-4 text-sm"
                 onClick={() => setActive((index) => (index === null ? 0 : (index + 1) % images.length))}
               >
                 Next
@@ -123,7 +124,7 @@ function FilterButton({
   return (
     <button
       aria-pressed={selected}
-      className={`min-h-11 shrink-0 border px-4 text-sm ${selected ? "border-accent bg-accent text-black" : "border-line text-ink"}`}
+      className={chipClass(selected)}
       onClick={() => onSelect(id)}
     >
       {children}
