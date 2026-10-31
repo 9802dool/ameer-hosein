@@ -28,7 +28,7 @@ export async function generateMetadata({
 
 export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   return (
-    <Suspense fallback={<div className="px-5 pt-32 text-muted">Loading the piece…</div>}>
+    <Suspense fallback={<div className="shell pt-16 text-muted">Loading the piece…</div>}>
       <ProductDetails params={params} />
     </Suspense>
   );
@@ -40,7 +40,7 @@ async function ProductDetails({ params }: { params: Promise<{ slug: string }> })
   if (!product) notFound();
 
   return (
-    <div className="mx-auto max-w-6xl px-5 pb-20 pt-28 md:px-8 md:pt-32">
+    <div className="shell pt-10 pb-20 md:pt-14">
       <JsonLd data={productJsonLd(product, `${siteUrl()}/shop/${product.slug}`)} />
       <ProductPurchase product={product} />
     </div>

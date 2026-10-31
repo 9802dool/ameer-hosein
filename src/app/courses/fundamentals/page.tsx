@@ -33,8 +33,8 @@ export default function FundamentalsPage() {
     <>
       <JsonLd data={courseJson} />
       <PageIntro eyebrow={fundamentals.eyebrow} title={fundamentals.name} lede={fundamentals.summary} />
-      <div className="mx-auto grid max-w-6xl gap-12 px-5 pb-20 md:grid-cols-2 md:px-8">
-        <div className="relative min-h-80">
+      <div className="shell grid gap-12 pb-20 md:grid-cols-2 md:gap-16">
+        <div className="relative min-h-80 overflow-hidden rounded-[1.75rem] shadow-[var(--shadow)]">
           <Image src={fundamentals.image} alt={fundamentals.imageAlt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
         </div>
         <div className="space-y-4 text-lg leading-relaxed text-muted">
@@ -44,7 +44,7 @@ export default function FundamentalsPage() {
         </div>
       </div>
       <section className="border-y border-line">
-        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 md:grid-cols-2 md:px-8">
+        <div className="shell grid gap-8 py-14 md:grid-cols-2 md:gap-16">
           <div>
             <h2 className="font-display text-4xl">What we cover</h2>
             <ul className="mt-6 space-y-3">
@@ -55,8 +55,8 @@ export default function FundamentalsPage() {
               ))}
             </ul>
           </div>
-          <div className="bg-panel p-6">
-            <p className="inline-block bg-accent px-3 py-1 text-xs uppercase tracking-[0.18em] text-black">
+          <div className="card p-6 md:p-8">
+            <p className="inline-block rounded-full bg-accent px-3 py-1 text-xs font-semibold tracking-[0.16em] text-white uppercase">
               {fundamentals.limited}
             </p>
             <dl className="mt-6 space-y-4 text-sm">
@@ -85,20 +85,20 @@ export default function FundamentalsPage() {
           </div>
         </div>
       </section>
-      <section className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-2 md:px-8">
+      <section className="shell grid gap-10 py-16 md:grid-cols-2 md:gap-16">
         <Image
           src={fundamentals.detailImage}
           alt={fundamentals.detailImageAlt}
           width={1200}
           height={1500}
-          className="h-auto w-full object-cover"
+          className="h-auto w-full rounded-[1.75rem] object-cover shadow-[var(--shadow)]"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
         <div>
           <h2 className="font-display text-4xl">Questions</h2>
           <div className="mt-6 space-y-3">
             {fundamentals.faq.map((item) => (
-              <details key={item.question} className="border border-line px-4 py-3">
+              <details key={item.question} className="rounded-2xl border border-line bg-panel px-5 py-4 shadow-[var(--shadow)]">
                 <summary className="cursor-pointer text-lg">{item.question}</summary>
                 <p className="pt-3 text-muted">{item.answer}</p>
               </details>
@@ -107,7 +107,7 @@ export default function FundamentalsPage() {
         </div>
       </section>
       <section id="enrol" className="border-t border-line bg-panel">
-        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-16 md:grid-cols-2 md:px-8">
+        <div className="shell grid gap-8 py-16 md:grid-cols-2 md:gap-16">
           <div>
             <h2 className="font-display text-5xl">Join the next class.</h2>
             <p className="mt-4 text-muted">

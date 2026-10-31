@@ -16,7 +16,7 @@ export function TestimonialSlider() {
 
   return (
     <div>
-      <div className="min-h-72 border border-line bg-panel p-6 md:p-10">
+      <div className="card min-h-72 p-6 md:p-10">
         {slide.kind === "quote" ? (
           <figure>
             <blockquote className="font-display text-3xl leading-tight md:text-5xl">
@@ -63,10 +63,10 @@ export function TestimonialSlider() {
           {index + 1} / {slides.length}
         </p>
         <div className="flex gap-2">
-          <button className="min-h-11 border border-line px-4 text-sm" onClick={() => setIndex((value) => (value + slides.length - 1) % slides.length)}>
+          <button className="min-h-11 rounded-full border border-line bg-panel px-4 text-sm" onClick={() => setIndex((value) => (value + slides.length - 1) % slides.length)}>
             Previous
           </button>
-          <button className="min-h-11 border border-line px-4 text-sm" onClick={() => setIndex((value) => (value + 1) % slides.length)}>
+          <button className="min-h-11 rounded-full border border-line bg-panel px-4 text-sm" onClick={() => setIndex((value) => (value + 1) % slides.length)}>
             Next
           </button>
         </div>

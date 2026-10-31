@@ -12,7 +12,7 @@ export default function CheckoutPage() {
   return (
     <>
       <PageIntro eyebrow="AH Store" title="Checkout" lede="Your details, how you want it delivered, and how you want to pay." />
-      <div className="mx-auto max-w-6xl px-5 pb-20 md:px-8">
+      <div className="shell pb-20">
         <CheckoutForm />
       </div>
     </>

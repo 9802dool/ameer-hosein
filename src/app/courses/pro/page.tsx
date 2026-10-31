@@ -16,8 +16,8 @@ export default function ProClassPage() {
   return (
     <>
       <PageIntro eyebrow={proClass.eyebrow} title={`${proClass.name} · ${proClass.edition}`} lede={proClass.summary} />
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 pb-16 md:grid-cols-2 md:px-8">
-        <div className="relative min-h-80">
+      <div className="shell grid gap-10 pb-16 md:grid-cols-2 md:gap-16">
+        <div className="relative min-h-80 overflow-hidden rounded-[1.75rem] shadow-[var(--shadow)]">
           <Image src={proClass.image} alt={proClass.imageAlt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
         </div>
         <div className="space-y-4 text-lg leading-relaxed text-muted">
@@ -30,12 +30,12 @@ export default function ProClassPage() {
         </div>
       </div>
       <section className="border-t border-line">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:px-8">
+        <div className="shell py-16">
           <h2 className="font-display text-4xl">Graduate work · the 10-minute challenge</h2>
           <div className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3">
             {proClass.challenge.map((shot) => (
               <figure key={shot.title} className="mb-4 break-inside-avoid">
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden rounded-2xl shadow-[var(--shadow)]">
                   <Image
                     src={shot.image}
                     alt={shot.alt}

@@ -1,24 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #fafafa;
-  --ink: #09090b;
-  --muted: #525252;
-  --line: #e5e5e5;
-  --accent: #d97706;
-  --panel: #ffffff;
-  --header: rgb(250 250 250 / 0.88);
+  --paper: #f4efe8;
+  --ink: #1a1412;
+  --muted: #5c534c;
+  --line: #e3d9ce;
+  --panel: #fffcf8;
+  --accent: #b3121f;
+  --accent-text: #8e1019;
+  --danger: #9f1230;
+  --header: rgb(244 239 232 / 0.9);
+  --shadow: 0 18px 40px -28px rgb(40 18 12 / 0.45);
+  --shadow-hover: 0 26px 50px -24px rgb(40 18 12 / 0.5);
   color-scheme: light;
 }
 
 .dark {
-  --paper: #09090b;
-  --ink: #f5f5f5;
-  --muted: #a3a3a3;
-  --line: #262626;
-  --accent: #f59e0b;
-  --panel: #171717;
-  --header: rgb(9 9 11 / 0.8);
+  --paper: #100e0c;
+  --ink: #f6f1ea;
+  --muted: #c9beb2;
+  --line: #2e2926;
+  --panel: #1a1715;
+  --accent: #b3121f;
+  --accent-text: #ff4d5a;
+  --danger: #ffb4b0;
+  --header: rgb(16 14 12 / 0.88);
+  --shadow: 0 20px 44px -26px rgb(0 0 0 / 0.72);
+  --shadow-hover: 0 28px 54px -22px rgb(0 0 0 / 0.78);
   color-scheme: dark;
 }
 
@@ -28,29 +36,146 @@
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-danger: var(--danger);
   --color-panel: var(--panel);
-  --font-sans: var(--font-sans), "Segoe UI", sans-serif;
-  --font-display: var(--font-sans), "Segoe UI", sans-serif;
-}
-
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-sans), "Segoe UI", sans-serif;
-}
-
-::selection {
-  background: #f59e0b;
-  color: #000;
+  --font-sans: var(--font-outfit), "Segoe UI", sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+body {
+  background:
+    radial-gradient(980px 520px at 100% -12%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 58%),
+    radial-gradient(720px 420px at -12% 0%, color-mix(in oklab, var(--accent) 8%, transparent), transparent 52%),
+    var(--paper);
+  color: var(--ink);
+  font-family: var(--font-outfit), "Segoe UI", sans-serif;
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  text-wrap: balance;
+}
+
+h1 {
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.96;
+}
+
+h2,
+h3 {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+::selection {
+  background: #b3121f;
+  color: #fff;
+}
+
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-text);
   outline-offset: 3px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+.shell {
+  width: min(76rem, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .shell {
+    width: min(76rem, calc(100% - 4rem));
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--accent-text);
+  font-family: var(--font-outfit), "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 1.4rem;
+  height: 2px;
+  flex: none;
+  background: var(--accent);
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .card-hover {
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in oklab, var(--accent) 55%, var(--line));
+    box-shadow: var(--shadow-hover);
+  }
+}
+
+.reveal:not(.is-in) {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal:not(.is-in) {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s ease;
+  }
+}
+
+@media (scripting: none) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+#store,
+#courses,
+#enrol {
+  scroll-margin-top: 5.5rem;
 }
 
 dialog {
@@ -63,7 +188,7 @@ dialog {
 }
 
 dialog::backdrop {
-  background: rgb(0 0 0 / 0.86);
+  background: rgb(10 8 7 / 0.86);
 }
 
 @media (prefers-reduced-motion: reduce) {

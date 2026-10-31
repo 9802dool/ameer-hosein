@@ -162,9 +162,9 @@ export function CheckoutForm() {
         >
           Order via WhatsApp
         </a>
-        {status ? <p className="text-sm text-accent">{status}</p> : null}
+        {status ? <p className="text-sm text-danger">{status}</p> : null}
       </div>
-      <aside className="h-fit border border-line bg-panel p-5">
+      <aside className="card h-fit p-6 md:sticky md:top-24">
         <h2 className="font-display text-3xl">Order</h2>
         <ul className="mt-4 space-y-3 text-sm">
           {detailed.map((line) => (

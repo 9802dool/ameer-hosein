@@ -1,12 +1,14 @@
 "use client";
 
 import { createContext, useCallback, useContext, useMemo, useState, useSyncExternalStore } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { products } from "@content/products";
 import { whatsappLink } from "@content/site";
 import { formatMoney, variantLabel } from "@/lib/money";
 import { buttonClass, ghostClass } from "@/components/brand";
+import { BagIcon } from "@/components/icons";
 
 export type CartLine = {
   productId: string;
@@ -144,7 +146,7 @@ export function CartDrawer() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="cart-title"
-        className="absolute inset-y-0 right-0 flex w-full max-w-md flex-col bg-paper text-ink shadow-2xl"
+        className="absolute inset-y-0 right-0 flex w-full max-w-md flex-col bg-paper text-ink shadow-[var(--shadow-hover)]"
       >
         <div className="flex items-center justify-between border-b border-line px-5 py-4">
           <h2 id="cart-title" className="font-display text-3xl">
@@ -160,8 +162,16 @@ export function CartDrawer() {
           ) : (
             detailed.map((line) => (
               <div key={line.variantId} className="grid grid-cols-[72px_1fr] gap-3 border-b border-line pb-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={line.product.images[0]?.src} alt="" className="h-[88px] w-[72px] object-cover" />
+                {line.product.images[0] ? (
+                  <Image
+                    src={line.product.images[0].src}
+                    alt={line.product.images[0].alt}
+                    width={144}
+                    height={176}
+                    sizes="72px"
+                    className="h-[88px] w-[72px] rounded-xl object-cover"
+                  />
+                ) : null}
                 <div>
                   <p className="font-medium">{line.product.name}</p>
                   <p className="text-sm text-muted">{line.label}</p>
@@ -214,11 +224,17 @@ export function CartButton() {
   const { count, setOpen } = useCart();
   return (
     <button
-      className="min-h-11 px-2 text-sm"
+      type="button"
+      className="relative inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line"
       onClick={() => setOpen(true)}
       aria-label={`Open bag, ${count} ${count === 1 ? "item" : "items"}`}
     >
-      Bag {count > 0 ? `(${count})` : ""}
+      <BagIcon className="h-4 w-4" />
+      {count > 0 ? (
+        <span className="absolute -top-1 -right-1 grid h-5 min-w-5 place-items-center rounded-full bg-accent px-1 text-[11px] font-semibold text-white">
+          {count}
+        </span>
+      ) : null}
     </button>
   );
 }

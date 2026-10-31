@@ -25,9 +25,9 @@ export default function ContactPage({
         title="Start with a message."
         lede="Course, photoshoot, brand work, or something else. Call, WhatsApp, or use the form."
       />
-      <div className="mx-auto grid max-w-6xl gap-12 px-5 pb-20 md:grid-cols-2 md:px-8">
+      <div className="shell grid gap-12 pb-20 md:grid-cols-2 md:gap-16">
         <div>
-          <p className="font-display text-3xl">
+          <p className="font-display text-4xl">
             <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
           </p>
           <p className="mt-2 text-muted">Phone and WhatsApp</p>
@@ -39,7 +39,7 @@ export default function ContactPage({
           <ul className="mt-6 space-y-2 text-sm">
             {site.socials.map((item) => (
               <li key={item.href}>
-                <a className="underline" href={item.href} target="_blank" rel="noreferrer">
+                <a className="underline decoration-line underline-offset-4 transition hover:text-accent-text" href={item.href} target="_blank" rel="noreferrer">
                   {item.label} {item.handle}
                 </a>
               </li>
@@ -48,14 +48,16 @@ export default function ContactPage({
           <iframe
             title="Map showing Plaza De Montrose, Chaguanas"
             src={map}
-            className="mt-8 h-72 w-full border border-line"
+            className="mt-8 h-72 w-full rounded-[1.75rem] border border-line shadow-[var(--shadow)]"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
-        <Suspense fallback={<p className="text-muted">Loading the form…</p>}>
-          <ContactPanel searchParams={searchParams} />
-        </Suspense>
+        <div className="card p-6 md:p-8">
+          <Suspense fallback={<p className="text-muted">Loading the form…</p>}>
+            <ContactPanel searchParams={searchParams} />
+          </Suspense>
+        </div>
       </div>
     </>
   );
